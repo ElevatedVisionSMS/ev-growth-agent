@@ -30,13 +30,26 @@ An AI agent that acts as a 24/7 marketing consultant: scans a business's online 
 - Automated task nudges ("Post this Reel tomorrow", "Respond to these 4 Google reviews", "Your competitor just outranked you")
 
 ## 4. Test version scope (what's built today)
-A single-page demo app where the user manually enters:
-- Business name, industry, city/area, website (optional), and a short description of the business and its goal
+
+### Two modes
+A toggle at the top switches between:
+- **Internal (Elevated Vision Team)** — branded as "Elevated Vision AI Growth Agent / Your AI marketing employee for local businesses," for EV's own team to use while gathering info from a prospect or client
+- **Client Self-Serve** — neutral branding ("AI Marketing Growth Report / Free instant marketing analysis for your business") with a small "Powered by Elevated Vision" footer, for sharing the link directly with an end business owner without it reading like an internal EV sales tool
+
+### Form & report
+A 5-step guided form (Business Basics → Business Profile → Social Media → Local Listings & SEO → About the Business) where the user enters:
+- Business name, industry, city/area, website (optional)
+- Current business stage (select: ideation/pre-launch, created with no customers, established 1-10 / 11-50 / 50+ clients), primary business goal (select), and biggest current business challenge (select from 7 categories: Business Strategy, Marketing & Visibility, Sales & Clients, Finance & Funding, Legal & Compliance, Operations & Technology, Growth & Accountability)
+- Instagram/Facebook/TikTok/LinkedIn handles (optional), Google Business Profile link (optional), phone number (optional), Yelp/Bing Places/Apple Maps links (optional)
+- Exact handles, links, and phone number are captured (rather than inferred from the business name) because business names — and sometimes even phone numbers on shared/reused listings — can match multiple unrelated accounts, which risks the report referencing the wrong business
+- Four simple guided questions: what the business does, services provided, who the ideal customer is, and the biggest current marketing pain point
+
+The AI is instructed to tailor report tone and priorities to the business's stage, goal, and challenge (e.g. a pre-launch business gets different advice than an established one with 50+ clients).
 
 The app calls the Claude API live and returns:
 - Marketing Health Score (with reasoning)
 - SEO recommendations
-- 30-day content calendar
+- Content strategy (posting cadence, content pillars, and example post ideas)
 - Review response drafts (positive + negative example)
 - Blog ideas
 - Social captions
@@ -57,7 +70,8 @@ The goal was a working, shareable demo buildable with $0 upfront and no backend,
 
 ## 7. Tech (test version)
 - Single self-contained HTML/JS file, no build step
-- Styled to Elevated Vision brand (cream #f2eddb, taupe #62574e, Poppins)
+- Dark, professional theme (near-black background, cream/taupe accents drawn from the Elevated Vision palette)
+- 5-step wizard with a progress indicator; each step validates its required fields before advancing
 - Calls Anthropic's Messages API directly from the browser (model: claude-sonnet-4-6)
 - Hosted as a Claude.ai artifact for the public demo link
 
